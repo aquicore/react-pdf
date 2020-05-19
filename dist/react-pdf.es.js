@@ -3077,6 +3077,7 @@ const resolveImageFromUrl = async (src, options) => {
     headers,
     method = 'GET'
   } = src;
+  console.error(headers);
   const data =  getAbsoluteLocalPath(uri) ? await fetchLocalFile(uri, options) : await fetchRemoteFile(uri, {
     body,
     headers,
@@ -3097,14 +3098,19 @@ const resolveImage = (src, {
   }
 
   let image;
+  console.error(src);
 
   if (isCompatibleBase64(src)) {
+    console.error('64');
     image = resolveBase64Image(src);
   } else if (Buffer.isBuffer(src)) {
+    console.error('buff');
     image = resolveBufferImage(src);
   } else if (typeof src === 'object' && src.data) {
+    console.error('data');
     image = resolveImageFromData(src);
   } else {
+    console.error('url');
     image = resolveImageFromUrl(src, options);
   }
 
