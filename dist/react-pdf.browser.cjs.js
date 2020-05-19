@@ -4470,10 +4470,18 @@ var Image = /*#__PURE__*/function (_Base) {
       console.error(Math.min(width / this.ratio, height));
       console.error(Math.min(height * this.ratio, width));
       var newRatio = Math.min(width / this.image.width, height / this.image.height);
-      return {
-        width: this.image.width * newRatio,
-        height: this.image.height * newRatio
-      };
+
+      if (this.ratio > 1) {
+        return {
+          width: width,
+          height: Math.min(width / this.ratio, height)
+        };
+      } else {
+        return {
+          width: Math.min(height * this.ratio, width),
+          height: height
+        };
+      }
     }
 
     return {
@@ -4611,6 +4619,9 @@ var Image = /*#__PURE__*/function (_Base) {
           yOffset = _resolveObjectFit.yOffset;
 
       if (width !== 0 && height !== 0) {
+        console.error('hey');
+        console.error(width);
+        console.error(height);
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {
           width: width,
           height: height

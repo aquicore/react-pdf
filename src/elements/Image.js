@@ -93,11 +93,17 @@ class Image extends Base {
       console.error(Math.min(height * this.ratio, width));
 
       const newRatio = Math.min(width / this.image.width, height / this.image.height);
-      
+      if (this.ratio > 1) {
         return {
-          width: this.image.width * newRatio,
-          height: this.image.height * newRatio
+          width: width,
+          height: Math.min(width / this.ratio, height),
         };
+      } else {
+        return {
+          width: Math.min(height * this.ratio, width),
+          height: height,
+        };
+      }
     }
 
     return { height, width };
@@ -165,6 +171,9 @@ class Image extends Base {
       );
 
       if (width !== 0 && height !== 0) {
+        console.error('hey')
+        console.error(width);
+        console.error(height);
         this.root.instance
           .fillOpacity(opacity)
           .image(
