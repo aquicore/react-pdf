@@ -4431,6 +4431,8 @@ var Image = /*#__PURE__*/function (_Base) {
     console.error(height);
     console.error(width);
     console.error(this.style);
+    console.error(this.image);
+    console.error(this.ratio);
 
     if (this.style.maxWidth) {
       widthMode = Yoga.MEASURE_MODE_AT_MOST;
