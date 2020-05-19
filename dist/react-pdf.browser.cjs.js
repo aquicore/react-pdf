@@ -4404,8 +4404,8 @@ var Image = /*#__PURE__*/function (_Base) {
     var _this;
 
     _this = _Base.call(this, root, props) || this;
-    console.log(props);
-    console.log(root);
+    console.error(props);
+    console.error(root);
     _this.image = null;
 
     _this.layout.setMeasureFunc(_this.measureImage.bind(_assertThisInitialized(_this)));

@@ -3786,8 +3786,8 @@ const SAFETY_HEIGHT = 10;
 class Image extends Base {
   constructor(root, props) {
     super(root, props);
-    console.log(props);
-    console.log(root);
+    console.error(props);
+    console.error(root);
     this.image = null;
     this.layout.setMeasureFunc(this.measureImage.bind(this));
   }
