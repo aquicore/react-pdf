@@ -111,7 +111,6 @@ class Document {
           listToExplore.push(childNode);
         });
       }
-      console.error(listToExplore);
     }
 
     await Promise.all(promises);
