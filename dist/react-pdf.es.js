@@ -3833,21 +3833,12 @@ class Image extends Base {
     }
 
     if (widthMode === Yoga.MEASURE_MODE_AT_MOST && heightMode === Yoga.MEASURE_MODE_AT_MOST) {
-      console.error('here');
-      console.error(this.ratio);
-      console.error(Math.min(width / this.ratio, height));
-      console.error(Math.min(height * this.ratio, width));
-
       if (this.ratio > 1) {
-        this.image.width = width;
-        this.image.height = Math.min(width / this.ratio, height);
         return {
           width: width,
           height: Math.min(width / this.ratio, height)
         };
       } else {
-        this.image.width = Math.min(height * this.ratio, width);
-        this.image.height = height;
         return {
           width: Math.min(height * this.ratio, width),
           height: height
@@ -3926,8 +3917,6 @@ class Image extends Base {
     this.clip();
 
     if (this.image.data) {
-      console.error(this.image.width);
-      console.error(this.image.height);
       const {
         width,
         height,
@@ -3936,9 +3925,6 @@ class Image extends Base {
       } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY);
 
       if (width !== 0 && height !== 0) {
-        console.error('hey');
-        console.error(width);
-        console.error(height);
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {
           width,
           height
@@ -4071,7 +4057,6 @@ class Document {
       const node = listToExplore.shift();
 
       if (node.name === 'Image') {
-        console.error('image found');
         promises.push(node.fetch());
       }
 

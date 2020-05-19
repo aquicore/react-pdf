@@ -102,7 +102,6 @@ class Document {
       const node = listToExplore.shift();
 
       if (node.name === 'Image') {
-        console.error('image found');
         promises.push(node.fetch());
       }
 
