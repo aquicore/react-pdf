@@ -4364,6 +4364,7 @@ var applyScaleDownObjectFit = function applyScaleDownObjectFit(cw, ch, iw, ih, p
 };
 
 var applyFillObjectFit = function applyFillObjectFit(cw, ch, px, py) {
+  console.error(cw, ch);
   return {
     width: cw,
     height: ch,
@@ -4376,6 +4377,8 @@ var resolveObjectFit = function resolveObjectFit(type, cw, ch, iw, ih, px, py) {
   if (type === void 0) {
     type = 'fill';
   }
+
+  console.error(type);
 
   switch (type) {
     case 'contain':
@@ -4607,6 +4610,9 @@ var Image = /*#__PURE__*/function (_Base) {
     this.clip();
 
     if (this.image.data) {
+      console.error(this.image.width);
+      console.error(this.image.height);
+
       var _resolveObjectFit = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY),
           width = _resolveObjectFit.width,
           height = _resolveObjectFit.height,

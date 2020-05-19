@@ -155,6 +155,8 @@ class Image extends Base {
     this.clip();
 
     if (this.image.data) {
+      console.error(this.image.width);
+      console.error(this.image.height);
       const { width, height, xOffset, yOffset } = resolveObjectFit(
         this.style.objectFit,
         this.width - padding.left - padding.right,
