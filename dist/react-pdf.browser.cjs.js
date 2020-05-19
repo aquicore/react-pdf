@@ -4464,19 +4464,15 @@ var Image = /*#__PURE__*/function (_Base) {
 
     if (widthMode === Yoga.MEASURE_MODE_AT_MOST && heightMode === Yoga.MEASURE_MODE_AT_MOST) {
       if (this.ratio > 1) {
-        this.image = {
-          width: width,
-          height: Math.min(width / this.ratio, height)
-        };
+        this.image.width = width;
+        this.image.height = Math.min(width / this.ratio, height);
         return {
           width: width,
           height: Math.min(width / this.ratio, height)
         };
       } else {
-        this.image = {
-          width: Math.min(height * this.ratio, width),
-          height: height
-        };
+        this.image.width = Math.min(height * this.ratio, width);
+        this.image.height = height;
         return {
           width: Math.min(height * this.ratio, width),
           height: height
