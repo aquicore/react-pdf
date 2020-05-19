@@ -3505,35 +3505,34 @@ var resolveImageFromUrl = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             uri = src.uri, body = src.body, headers = src.headers, _src$method = src.method, method = _src$method === void 0 ? 'GET' : _src$method;
-            console.error(headers);
 
             {
-              _context2.next = 8;
+              _context2.next = 7;
               break;
             }
 
-          case 5:
+          case 4:
             _context2.t0 = _context2.sent;
-            _context2.next = 11;
+            _context2.next = 10;
             break;
 
-          case 8:
-            _context2.next = 10;
+          case 7:
+            _context2.next = 9;
             return fetchRemoteFile(uri, {
               body: body,
               headers: headers,
               method: method
             });
 
-          case 10:
+          case 9:
             _context2.t0 = _context2.sent;
 
-          case 11:
+          case 10:
             data = _context2.t0;
             extension = getImageFormat(data);
             return _context2.abrupt("return", getImage(data, extension));
 
-          case 14:
+          case 13:
           case "end":
             return _context2.stop();
         }
@@ -3559,19 +3558,14 @@ var resolveImage = function resolveImage(src, _temp3) {
   }
 
   var image;
-  console.error(src);
 
   if (isCompatibleBase64(src)) {
-    console.error('64');
     image = resolveBase64Image(src);
   } else if (Buffer.isBuffer(src)) {
-    console.error('buff');
     image = resolveBufferImage(src);
   } else if (typeof src === 'object' && src.data) {
-    console.error('data');
     image = resolveImageFromData(src);
   } else {
-    console.error('url');
     image = resolveImageFromUrl(src, options);
   }
 
