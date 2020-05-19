@@ -3084,18 +3084,12 @@ const resolveImageFromUrl = async (src, options) => {
     headers,
     method = 'GET'
   } = src;
-  const absPath = getAbsoluteLocalPath(uri);
-  const localFile = await fetchLocalFile(uri, options);
-  const remoteFile = await fetchRemoteFile(uri, {
+  console.error(headers);
+  const data =  getAbsoluteLocalPath(uri) ? await fetchLocalFile(uri, options) : await fetchRemoteFile(uri, {
     body,
     headers,
     method
   });
-  console.error(absPath);
-  console.error(localFile);
-  console.error(remoteFile);
-  const data =  absPath ? localFile : remoteFile;
-  console.error(data);
   const extension = getImageFormat(data);
   return getImage(data, extension);
 };
@@ -3114,12 +3108,16 @@ const resolveImage = (src, {
   console.error(src);
 
   if (isCompatibleBase64(src)) {
+    console.error('64');
     image = resolveBase64Image(src);
   } else if (Buffer.isBuffer(src)) {
+    console.error('buff');
     image = resolveBufferImage(src);
   } else if (typeof src === 'object' && src.data) {
+    console.error('data');
     image = resolveImageFromData(src);
   } else {
+    console.error('url');
     image = resolveImageFromUrl(src, options);
   }
 

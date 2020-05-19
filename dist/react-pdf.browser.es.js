@@ -3264,8 +3264,6 @@ var engines = {
 };
 var engine = layoutEngine(engines);
 
-var fs = {};
-
 PNG.isValid = function (data) {
   try {
     return !!new PNG(data);
@@ -3370,56 +3368,6 @@ var createCache = function createCache(_temp) {
 var IMAGE_CACHE = createCache({
   limit: 30
 });
-var getAbsoluteLocalPath = function getAbsoluteLocalPath(src) {
-  {
-    throw new Error('Cannot check local paths in client-side environment');
-  }
-};
-var isDangerousLocalPath = function isDangerousLocalPath(filename, _temp) {
-  var _ref = _temp === void 0 ? {} : _temp,
-      _ref$safePath = _ref.safePath,
-      safePath = _ref$safePath === void 0 ? './public' : _ref$safePath;
-
-  {
-    throw new Error('Cannot check dangerous local path in client-side environemnt');
-  }
-
-  var absoluteSafePath = fs.resolve(safePath);
-  var absoluteFilePath = fs.resolve(filename);
-};
-
-var fetchLocalFile = function fetchLocalFile(src, _temp2) {
-  var _ref2 = _temp2 === void 0 ? {} : _temp2,
-      safePath = _ref2.safePath,
-      _ref2$allowDangerousP = _ref2.allowDangerousPaths,
-      allowDangerousPaths = _ref2$allowDangerousP === void 0 ? false : _ref2$allowDangerousP;
-
-  return new Promise(function (resolve, reject) {
-    try {
-      if (true) {
-        return reject(new Error('Cannot fetch local file in this environemnt'));
-      }
-
-      var absolutePath = getAbsoluteLocalPath(src);
-
-      if (!absolutePath) {
-        return reject(new Error("Cannot fetch non-local path: " + src));
-      }
-
-      if (!allowDangerousPaths && isDangerousLocalPath(absolutePath, {
-        safePath: safePath
-      })) {
-        return reject(new Error("Cannot fetch dangerous local path: " + src));
-      }
-
-      fs.readFile(absolutePath, function (err, data) {
-        return err ? reject(err) : resolve(data);
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
-};
 
 var fetchRemoteFile = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(uri, options) {
@@ -3542,37 +3490,42 @@ var getImageFormat = function getImageFormat(body) {
 
 var resolveImageFromUrl = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(src, options) {
-    var uri, body, headers, _src$method, method, absPath, localFile, remoteFile, data, extension;
+    var uri, body, headers, _src$method, method, data, extension;
 
     return _regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             uri = src.uri, body = src.body, headers = src.headers, _src$method = src.method, method = _src$method === void 0 ? 'GET' : _src$method;
-            absPath = getAbsoluteLocalPath();
-            _context2.next = 4;
-            return fetchLocalFile(uri, options);
+            console.error(headers);
 
-          case 4:
-            localFile = _context2.sent;
-            _context2.next = 7;
+            {
+              _context2.next = 8;
+              break;
+            }
+
+          case 5:
+            _context2.t0 = _context2.sent;
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.next = 10;
             return fetchRemoteFile(uri, {
               body: body,
               headers: headers,
               method: method
             });
 
-          case 7:
-            remoteFile = _context2.sent;
-            console.error(absPath);
-            console.error(localFile);
-            console.error(remoteFile);
-            data =  remoteFile;
-            console.error(data);
+          case 10:
+            _context2.t0 = _context2.sent;
+
+          case 11:
+            data = _context2.t0;
             extension = getImageFormat(data);
             return _context2.abrupt("return", getImage(data, extension));
 
-          case 15:
+          case 14:
           case "end":
             return _context2.stop();
         }
@@ -3601,12 +3554,16 @@ var resolveImage = function resolveImage(src, _temp3) {
   console.error(src);
 
   if (isCompatibleBase64(src)) {
+    console.error('64');
     image = resolveBase64Image(src);
   } else if (Buffer.isBuffer(src)) {
+    console.error('buff');
     image = resolveBufferImage(src);
   } else if (typeof src === 'object' && src.data) {
+    console.error('data');
     image = resolveImageFromData(src);
   } else {
+    console.error('url');
     image = resolveImageFromUrl(src, options);
   }
 
