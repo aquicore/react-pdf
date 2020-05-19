@@ -3807,13 +3807,6 @@ class Image extends Base {
       width: 0,
       height: 0
     };
-    console.error(widthMode);
-    console.error(heightMode);
-    console.error(height);
-    console.error(width);
-    console.error(this.style);
-    console.error(this.image);
-    console.error(this.ratio);
 
     if (this.style.maxWidth) {
       widthMode = Yoga.MEASURE_MODE_AT_MOST;
@@ -3822,6 +3815,14 @@ class Image extends Base {
     if (this.style.maxHeight) {
       heightMode = Yoga.MEASURE_MODE_AT_MOST;
     }
+
+    console.error(widthMode);
+    console.error(heightMode);
+    console.error(height);
+    console.error(width);
+    console.error(this.style);
+    console.error(this.image);
+    console.error(this.ratio);
 
     if (widthMode === Yoga.MEASURE_MODE_EXACTLY && heightMode === Yoga.MEASURE_MODE_UNDEFINED) {
       const scaledHeight = width / this.ratio;
@@ -3844,17 +3845,15 @@ class Image extends Base {
     }
 
     if (widthMode === Yoga.MEASURE_MODE_AT_MOST && heightMode === Yoga.MEASURE_MODE_AT_MOST) {
-      if (this.ratio > 1) {
-        return {
-          width: width,
-          height: Math.min(width / this.ratio, height)
-        };
-      } else {
-        return {
-          width: Math.min(height * this.ratio, width),
-          height: height
-        };
-      }
+      console.error('here');
+      console.error(this.ratio);
+      console.error(Math.min(width / this.ratio, height));
+      console.error(Math.min(height * this.ratio, width));
+      const newRatio = Math.min(width / this.image.width, height / this.image.height);
+      return {
+        width: this.image.width * newRatio,
+        height: this.image.height * newRatio
+      };
     }
 
     return {

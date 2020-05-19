@@ -44,6 +44,13 @@ class Image extends Base {
     // Skip measure if image data not present yet
     if (!this.image) return { width: 0, height: 0 };
 
+    if(this.style.maxWidth) {
+      widthMode = Yoga.MEASURE_MODE_AT_MOST;
+    }
+    if(this.style.maxHeight) {
+      heightMode = Yoga.MEASURE_MODE_AT_MOST;
+    }
+
     console.error(widthMode);
     console.error(heightMode);
     console.error(height);
@@ -51,12 +58,6 @@ class Image extends Base {
     console.error(this.style);
     console.error(this.image);
     console.error(this.ratio);
-    if(this.style.maxWidth) {
-      widthMode = Yoga.MEASURE_MODE_AT_MOST;
-    }
-    if(this.style.maxHeight) {
-      heightMode = Yoga.MEASURE_MODE_AT_MOST;
-    }
 
     if (
       widthMode === Yoga.MEASURE_MODE_EXACTLY &&
@@ -86,17 +87,17 @@ class Image extends Base {
       widthMode === Yoga.MEASURE_MODE_AT_MOST &&
       heightMode === Yoga.MEASURE_MODE_AT_MOST
     ) {
-      if (this.ratio > 1) {
+      console.error('here');
+      console.error(this.ratio);
+      console.error(Math.min(width / this.ratio, height));
+      console.error(Math.min(height * this.ratio, width));
+
+      const newRatio = Math.min(width / this.image.width, height / this.image.height);
+      
         return {
-          width: width,
-          height: Math.min(width / this.ratio, height),
+          width: this.image.width * newRatio,
+          height: this.image.height * newRatio
         };
-      } else {
-        return {
-          width: Math.min(height * this.ratio, width),
-          height: height,
-        };
-      }
     }
 
     return { height, width };
