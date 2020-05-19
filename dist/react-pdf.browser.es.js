@@ -4427,14 +4427,6 @@ var Image = /*#__PURE__*/function (_Base) {
       heightMode = Yoga.MEASURE_MODE_AT_MOST;
     }
 
-    console.error(widthMode);
-    console.error(heightMode);
-    console.error(height);
-    console.error(width);
-    console.error(this.style);
-    console.error(this.image);
-    console.error(this.ratio);
-
     if (widthMode === Yoga.MEASURE_MODE_EXACTLY && heightMode === Yoga.MEASURE_MODE_UNDEFINED) {
       var scaledHeight = width / this.ratio;
       return {
@@ -4461,14 +4453,17 @@ var Image = /*#__PURE__*/function (_Base) {
       console.error(this.ratio);
       console.error(Math.min(width / this.ratio, height));
       console.error(Math.min(height * this.ratio, width));
-      var newRatio = Math.min(width / this.image.width, height / this.image.height);
 
       if (this.ratio > 1) {
+        this.image.width = width;
+        this.image.height = Math.min(width / this.ratio, height);
         return {
           width: width,
           height: Math.min(width / this.ratio, height)
         };
       } else {
+        this.image.width = Math.min(height * this.ratio, width);
+        this.image.height = height;
         return {
           width: Math.min(height * this.ratio, width),
           height: height
