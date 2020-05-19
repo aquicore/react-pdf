@@ -4426,6 +4426,12 @@ var Image = /*#__PURE__*/function (_Base) {
       width: 0,
       height: 0
     };
+    console.error(widthMode);
+    console.error(heightMode);
+    console.error(this.height);
+    console.error(this.width);
+    console.error(this.maxHeight);
+    console.error(this.maxWidth);
 
     if (widthMode === Yoga.MEASURE_MODE_EXACTLY && heightMode === Yoga.MEASURE_MODE_UNDEFINED) {
       var scaledHeight = width / this.ratio;
