@@ -4826,7 +4826,7 @@ var Document = /*#__PURE__*/function () {
                 node = listToExplore.shift();
 
                 if (node.name === 'Image') {
-                  console.log('image found');
+                  console.error('image found');
                   promises.push(node.fetch());
                 }
 
@@ -4835,6 +4835,8 @@ var Document = /*#__PURE__*/function () {
                     listToExplore.push(childNode);
                   });
                 }
+
+                console.error(listToExplore);
               }
 
               _context3.next = 5;

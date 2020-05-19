@@ -102,7 +102,7 @@ class Document {
       const node = listToExplore.shift();
 
       if (node.name === 'Image') {
-        console.log('image found');
+        console.error('image found');
         promises.push(node.fetch());
       }
 
@@ -111,6 +111,7 @@ class Document {
           listToExplore.push(childNode);
         });
       }
+      console.error(listToExplore);
     }
 
     await Promise.all(promises);
