@@ -3084,12 +3084,18 @@ const resolveImageFromUrl = async (src, options) => {
     headers,
     method = 'GET'
   } = src;
-  console.error(headers);
-  const data =  getAbsoluteLocalPath(uri) ? await fetchLocalFile(uri, options) : await fetchRemoteFile(uri, {
+  const absPath = getAbsoluteLocalPath(uri);
+  const localFile = await fetchLocalFile(uri, options);
+  const remoteFile = await fetchRemoteFile(uri, {
     body,
     headers,
     method
   });
+  console.error(absPath);
+  console.error(localFile);
+  console.error(remoteFile);
+  const data =  absPath ? localFile : remoteFile;
+  console.error(data);
   const extension = getImageFormat(data);
   return getImage(data, extension);
 };
@@ -3108,16 +3114,12 @@ const resolveImage = (src, {
   console.error(src);
 
   if (isCompatibleBase64(src)) {
-    console.error('64');
     image = resolveBase64Image(src);
   } else if (Buffer.isBuffer(src)) {
-    console.error('buff');
     image = resolveBufferImage(src);
   } else if (typeof src === 'object' && src.data) {
-    console.error('data');
     image = resolveImageFromData(src);
   } else {
-    console.error('url');
     image = resolveImageFromUrl(src, options);
   }
 
@@ -3760,7 +3762,6 @@ const applyScaleDownObjectFit = (cw, ch, iw, ih, px, py) => {
 };
 
 const applyFillObjectFit = (cw, ch, px, py) => {
-  console.error(cw, ch);
   return {
     width: cw,
     height: ch,
@@ -3770,8 +3771,6 @@ const applyFillObjectFit = (cw, ch, px, py) => {
 };
 
 const resolveObjectFit = (type = 'fill', cw, ch, iw, ih, px, py) => {
-  console.error(type);
-
   switch (type) {
     case 'contain':
       return applyContainObjectFit(cw, ch, iw, ih, px, py);
