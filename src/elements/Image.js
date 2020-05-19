@@ -17,7 +17,8 @@ class Image extends Base {
 
   constructor(root, props) {
     super(root, props);
-
+    console.log(props);
+    console.log(root);
     this.image = null;
     this.layout.setMeasureFunc(this.measureImage.bind(this));
   }
@@ -47,10 +48,8 @@ class Image extends Base {
 
     console.error(widthMode);
     console.error(heightMode);
-    console.error(this.height);
-    console.error(this.width);
-    console.error(this.maxHeight);
-    console.error(this.maxWidth)
+    console.error(height);
+    console.error(width);
     if (
       widthMode === Yoga.MEASURE_MODE_EXACTLY &&
       heightMode === Yoga.MEASURE_MODE_UNDEFINED

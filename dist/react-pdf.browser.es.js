@@ -4396,6 +4396,8 @@ var Image = /*#__PURE__*/function (_Base) {
     var _this;
 
     _this = _Base.call(this, root, props) || this;
+    console.log(props);
+    console.log(root);
     _this.image = null;
 
     _this.layout.setMeasureFunc(_this.measureImage.bind(_assertThisInitialized(_this)));
@@ -4420,10 +4422,8 @@ var Image = /*#__PURE__*/function (_Base) {
     };
     console.error(widthMode);
     console.error(heightMode);
-    console.error(this.height);
-    console.error(this.width);
-    console.error(this.maxHeight);
-    console.error(this.maxWidth);
+    console.error(height);
+    console.error(width);
 
     if (widthMode === Yoga.MEASURE_MODE_EXACTLY && heightMode === Yoga.MEASURE_MODE_UNDEFINED) {
       var scaledHeight = width / this.ratio;
@@ -4818,6 +4818,7 @@ var Document = /*#__PURE__*/function () {
                 node = listToExplore.shift();
 
                 if (node.name === 'Image') {
+                  console.log('image found');
                   promises.push(node.fetch());
                 }
 
