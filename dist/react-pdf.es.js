@@ -3806,6 +3806,14 @@ class Image extends Base {
     console.error(width);
     console.error(this.style);
 
+    if (this.style.maxWidth) {
+      widthMode = Yoga.MEASURE_MODE_AT_MOST;
+    }
+
+    if (this.style.maxHeight) {
+      heightMode = Yoga.MEASURE_MODE_AT_MOST;
+    }
+
     if (widthMode === Yoga.MEASURE_MODE_EXACTLY && heightMode === Yoga.MEASURE_MODE_UNDEFINED) {
       const scaledHeight = width / this.ratio;
       return {
