@@ -57,13 +57,6 @@ class Image extends Base {
     if(this.style.maxHeight) {
       heightMode = Yoga.MEASURE_MODE_AT_MOST;
     }
-    if(this.image.height){
-      height = this.image.height;
-    }
-    if(this.image.width){
-      width = this.image.width;
-    }
-    this.ratio = height / width;
 
     if (
       widthMode === Yoga.MEASURE_MODE_EXACTLY &&

@@ -3816,16 +3816,6 @@ class Image extends Base {
       heightMode = Yoga.MEASURE_MODE_AT_MOST;
     }
 
-    if (this.image.height) {
-      height = this.image.height;
-    }
-
-    if (this.image.width) {
-      width = this.image.width;
-    }
-
-    this.ratio = height / width;
-
     if (widthMode === Yoga.MEASURE_MODE_EXACTLY && heightMode === Yoga.MEASURE_MODE_UNDEFINED) {
       const scaledHeight = width / this.ratio;
       return {
