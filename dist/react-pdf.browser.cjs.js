@@ -4615,7 +4615,7 @@ var Image = /*#__PURE__*/function (_Base) {
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
       console.error(this.ratio);
-      console.error(Math.min(this.image.width / this.ratio, this.image.height));
+      console.error(Math.min(this.image.width * this.ratio, this.image.height));
 
       if (this.ratio > 1) {
         console.error('changing');
