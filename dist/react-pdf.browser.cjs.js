@@ -3577,6 +3577,7 @@ var resolveImage = function resolveImage(src, _temp3) {
     IMAGE_CACHE.set(cacheKey, image);
   }
 
+  console.error('returning');
   return image;
 };
 

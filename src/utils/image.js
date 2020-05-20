@@ -197,6 +197,6 @@ export const resolveImage = (src, { cache = true, ...options } = {}) => {
   if (cache) {
     IMAGE_CACHE.set(cacheKey, image);
   }
-
+  console.error('returning');
   return image;
 };

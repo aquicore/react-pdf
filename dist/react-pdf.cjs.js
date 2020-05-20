@@ -3123,6 +3123,7 @@ const resolveImage = (src, {
     IMAGE_CACHE.set(cacheKey, image);
   }
 
+  console.error('returning');
   return image;
 };
 
