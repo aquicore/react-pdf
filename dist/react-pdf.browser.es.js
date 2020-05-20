@@ -4463,10 +4463,6 @@ var Image = /*#__PURE__*/function (_Base) {
           height: Math.min(width / this.ratio, height)
         };
       } else {
-        console.error('yo');
-        console.error(width);
-        console.error(height);
-        console.error(Math.min(height * this.ratio, width));
         this.image.width = Math.min(height * this.ratio, width);
         this.image.height = height;
         return {
@@ -4602,7 +4598,6 @@ var Image = /*#__PURE__*/function (_Base) {
     this.root.instance.save(); // Clip path to keep image inside border radius
 
     this.clip();
-    this.measureImage(this);
 
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
@@ -4613,7 +4608,7 @@ var Image = /*#__PURE__*/function (_Base) {
           xOffset = _resolveObjectFit.xOffset,
           yOffset = _resolveObjectFit.yOffset;
 
-      console.error(width, height);
+      console.error('huh', width, height);
 
       if (width !== 0 && height !== 0) {
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {

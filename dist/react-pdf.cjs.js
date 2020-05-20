@@ -3851,10 +3851,6 @@ class Image extends Base {
           height: Math.min(width / this.ratio, height)
         };
       } else {
-        console.error('yo');
-        console.error(width);
-        console.error(height);
-        console.error(Math.min(height * this.ratio, width));
         this.image.width = Math.min(height * this.ratio, width);
         this.image.height = height;
         return {
@@ -3933,7 +3929,6 @@ class Image extends Base {
     this.root.instance.save(); // Clip path to keep image inside border radius
 
     this.clip();
-    this.measureImage(this);
 
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
@@ -3943,7 +3938,7 @@ class Image extends Base {
         xOffset,
         yOffset
       } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY);
-      console.error(width, height);
+      console.error('huh', width, height);
 
       if (width !== 0 && height !== 0) {
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {
