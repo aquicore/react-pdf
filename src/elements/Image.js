@@ -87,7 +87,7 @@ class Image extends Base {
         console.error(Math.min(width / this.ratio, height));
         console.error(this.image);
         this.image.width = width;
-        this.image.height = (Math.min((width / this.ratio), height));
+        this.image.height = (Math.min(width / this.ratio, height));
         console.error(this.image);
         return {
           width: width,
@@ -159,6 +159,16 @@ class Image extends Base {
 
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
+
+      if (this.ratio > 1) {
+        this.image.width = width;
+        this.image.height = (Math.min((width / this.ratio), height));
+        
+      } else {
+        this.image.width = Math.min(height * this.ratio, width);
+        this.image.height = height;
+      }
+      console.log(this.image);
       const { width, height, xOffset, yOffset } = resolveObjectFit(
         this.style.objectFit,
         this.width - padding.left - padding.right,
