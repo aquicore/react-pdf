@@ -3926,23 +3926,25 @@ class Image extends Base {
     this.root.instance.save(); // Clip path to keep image inside border radius
 
     this.clip();
+    let tempHeight = 0;
 
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
+      console.error(this.ratio);
 
       if (this.ratio > 1) {
-        this.image.height = Math.min(this.image.width / this.ratio, this.image.height);
+        tempHeight = Math.min(this.image.width / this.ratio, this.image.height);
       } else {
-        this.image.width = Math.min(this.image.height * this.ratio, this.image.width);
+        tempHeight = this.image.height;
       }
 
-      console.log(this.image);
+      console.error(tempHeight);
       const {
         width,
         height,
         xOffset,
         yOffset
-      } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY);
+      } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, tempHeight, objectPositionX, objectPositionY);
       console.error('huh', width, height);
 
       if (width !== 0 && height !== 0) {

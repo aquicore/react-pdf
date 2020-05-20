@@ -4610,19 +4610,21 @@ var Image = /*#__PURE__*/function (_Base) {
     this.root.instance.save(); // Clip path to keep image inside border radius
 
     this.clip();
+    var tempHeight = 0;
 
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
+      console.error(this.ratio);
 
       if (this.ratio > 1) {
-        this.image.height = Math.min(this.image.width / this.ratio, this.image.height);
+        tempHeight = Math.min(this.image.width / this.ratio, this.image.height);
       } else {
-        this.image.width = Math.min(this.image.height * this.ratio, this.image.width);
+        tempHeight = this.image.height;
       }
 
-      console.log(this.image);
+      console.error(tempHeight);
 
-      var _resolveObjectFit = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY),
+      var _resolveObjectFit = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, tempHeight, objectPositionX, objectPositionY),
           width = _resolveObjectFit.width,
           height = _resolveObjectFit.height,
           xOffset = _resolveObjectFit.xOffset,
