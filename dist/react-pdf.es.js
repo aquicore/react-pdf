@@ -3116,7 +3116,6 @@ const resolveImage = (src, {
     IMAGE_CACHE.set(cacheKey, image);
   }
 
-  console.error('returning');
   return image;
 };
 
@@ -3757,8 +3756,6 @@ const applyFillObjectFit = (cw, ch, px, py) => {
 };
 
 const resolveObjectFit = (type = 'fill', cw, ch, iw, ih, px, py) => {
-  console.error(type, cw, ch, iw, ih, px, py);
-
   switch (type) {
     case 'contain':
       return applyContainObjectFit(cw, ch, iw, ih, px, py);
@@ -3834,16 +3831,9 @@ class Image extends Base {
 
     if (widthMode === Yoga.MEASURE_MODE_AT_MOST && heightMode === Yoga.MEASURE_MODE_AT_MOST) {
       if (this.ratio > 1) {
-        console.error('here');
-        console.error(width);
-        console.error(height);
-        console.error(this.ratio);
-        console.error(this.image);
         const ratioed = Math.min(width / this.ratio, height);
-        console.error(ratioed);
         this.image.width = width;
         this.image.height = ratioed;
-        console.error(this.image);
         return {
           width: width,
           height: Math.min(width / this.ratio, height)
@@ -3894,7 +3884,6 @@ class Image extends Base {
         safePath,
         allowDangerousPaths
       });
-      console.error('resolving');
     } catch (e) {
       this.image = {
         width: 0,
@@ -3936,7 +3925,6 @@ class Image extends Base {
         xOffset,
         yOffset
       } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY);
-      console.error('huh', width, height);
 
       if (width !== 0 && height !== 0) {
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {

@@ -81,16 +81,9 @@ class Image extends Base {
     ) {
 
       if (this.ratio > 1) {
-        console.error('here');
-        console.error(width);
-        console.error(height);
-        console.error(this.ratio);
-        console.error(this.image);
         const ratioed = Math.min(width / this.ratio, height);
-        console.error(ratioed);
         this.image.width = width;
         this.image.height = ratioed;
-        console.error(this.image);
         return {
           width: width,
           height: Math.min(width / this.ratio, height),
@@ -132,7 +125,6 @@ class Image extends Base {
         safePath,
         allowDangerousPaths,
       });
-      console.error('resolving');
     } catch (e) {
       this.image = { width: 0, height: 0 };
       console.warn(e.message);
@@ -169,7 +161,6 @@ class Image extends Base {
         objectPositionX,
         objectPositionY,
       );
-      console.error('huh', width, height);
       if (width !== 0 && height !== 0) {
         this.root.instance
           .fillOpacity(opacity)

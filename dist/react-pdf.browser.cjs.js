@@ -3577,7 +3577,6 @@ var resolveImage = function resolveImage(src, _temp3) {
     IMAGE_CACHE.set(cacheKey, image);
   }
 
-  console.error('returning');
   return image;
 };
 
@@ -4378,8 +4377,6 @@ var resolveObjectFit = function resolveObjectFit(type, cw, ch, iw, ih, px, py) {
     type = 'fill';
   }
 
-  console.error(type, cw, ch, iw, ih, px, py);
-
   switch (type) {
     case 'contain':
       return applyContainObjectFit(cw, ch, iw, ih, px, py);
@@ -4461,16 +4458,9 @@ var Image = /*#__PURE__*/function (_Base) {
 
     if (widthMode === Yoga.MEASURE_MODE_AT_MOST && heightMode === Yoga.MEASURE_MODE_AT_MOST) {
       if (this.ratio > 1) {
-        console.error('here');
-        console.error(width);
-        console.error(height);
-        console.error(this.ratio);
-        console.error(this.image);
         var ratioed = Math.min(width / this.ratio, height);
-        console.error(ratioed);
         this.image.width = width;
         this.image.height = ratioed;
-        console.error(this.image);
         return {
           width: width,
           height: Math.min(width / this.ratio, height)
@@ -4539,12 +4529,11 @@ var Image = /*#__PURE__*/function (_Base) {
 
             case 15:
               this.image = _context.sent;
-              console.error('resolving');
-              _context.next = 23;
+              _context.next = 22;
               break;
 
-            case 19:
-              _context.prev = 19;
+            case 18:
+              _context.prev = 18;
               _context.t1 = _context["catch"](4);
               this.image = {
                 width: 0,
@@ -4552,12 +4541,12 @@ var Image = /*#__PURE__*/function (_Base) {
               };
               console.warn(_context.t1.message);
 
-            case 23:
+            case 22:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, this, [[4, 19]]);
+      }, _callee, this, [[4, 18]]);
     }));
 
     function fetch() {
@@ -4619,8 +4608,6 @@ var Image = /*#__PURE__*/function (_Base) {
           height = _resolveObjectFit.height,
           xOffset = _resolveObjectFit.xOffset,
           yOffset = _resolveObjectFit.yOffset;
-
-      console.error('huh', width, height);
 
       if (width !== 0 && height !== 0) {
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {
