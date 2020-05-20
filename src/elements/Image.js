@@ -87,6 +87,7 @@ class Image extends Base {
         console.error(Math.min(width / this.ratio, height));
         this.image.width = width;
         this.image.height = Math.min(width / this.ratio, height);
+        console.error(this.image);
         return {
           width: width,
           height: Math.min(width / this.ratio, height),
