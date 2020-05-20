@@ -161,9 +161,12 @@ class Image extends Base {
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
       console.error(this.ratio);
+      console.error(Math.min((this.image.width / this.ratio), this.image.height));
       if (this.ratio > 1) {
+        console.error('changing');
         tempHeight = (Math.min((this.image.width / this.ratio), this.image.height));
       } else {
+        console.error('uh hello');
         tempHeight = this.image.height;
       }
       console.error(tempHeight);
