@@ -4456,8 +4456,8 @@ var Image = /*#__PURE__*/function (_Base) {
         console.error('here');
         console.error(width);
         console.error(height);
-        console.error(this.image);
         console.error(this.ratio);
+        console.error(this.image);
         this.image.width = width;
         this.image.height = Math.min(width / this.ratio, height);
         console.error(this.image);
