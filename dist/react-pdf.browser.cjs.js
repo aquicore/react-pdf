@@ -4466,8 +4466,10 @@ var Image = /*#__PURE__*/function (_Base) {
         console.error(height);
         console.error(this.ratio);
         console.error(this.image);
+        var ratioed = Math.min(width / this.ratio, height);
+        console.error(ratioed);
         this.image.width = width;
-        this.image.height = Math.min(width / this.ratio, height);
+        this.image.height = ratioed;
         console.error(this.image);
         return {
           width: width,
