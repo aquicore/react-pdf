@@ -3831,6 +3831,10 @@ class Image extends Base {
 
     if (widthMode === Yoga.MEASURE_MODE_AT_MOST && heightMode === Yoga.MEASURE_MODE_AT_MOST) {
       if (this.ratio > 1) {
+        console.error('here');
+        console.error(width);
+        console.error(height);
+        console.error(Math.min(width / this.ratio, height));
         this.image.width = width;
         this.image.height = Math.min(width / this.ratio, height);
         return {
@@ -3838,6 +3842,10 @@ class Image extends Base {
           height: Math.min(width / this.ratio, height)
         };
       } else {
+        console.error('yo');
+        console.error(width);
+        console.error(height);
+        console.error(Math.min(height * this.ratio, width));
         this.image.width = Math.min(height * this.ratio, width);
         this.image.height = height;
         return {
