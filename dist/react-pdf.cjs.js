@@ -3933,6 +3933,7 @@ class Image extends Base {
     this.root.instance.save(); // Clip path to keep image inside border radius
 
     this.clip();
+    this.layout.measureImage();
 
     if (this.image.data) {
       console.error('what', this.image.width, this.image.height);
