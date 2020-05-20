@@ -87,7 +87,7 @@ const applyFillObjectFit = (cw, ch, px, py) => {
 };
 
 export const resolveObjectFit = (type = 'fill', cw, ch, iw, ih, px, py) => {
-
+  console.error(type, cw, ch, iw, ih, px, py);
   switch (type) {
     case 'contain':
       return applyContainObjectFit(cw, ch, iw, ih, px, py);

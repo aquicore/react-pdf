@@ -3763,6 +3763,8 @@ const applyFillObjectFit = (cw, ch, px, py) => {
 };
 
 const resolveObjectFit = (type = 'fill', cw, ch, iw, ih, px, py) => {
+  console.error(type, cw, ch, iw, ih, px, py);
+
   switch (type) {
     case 'contain':
       return applyContainObjectFit(cw, ch, iw, ih, px, py);
@@ -3933,6 +3935,7 @@ class Image extends Base {
     this.clip();
 
     if (this.image.data) {
+      console.error('what', this.image.width, this.image.height);
       const {
         width,
         height,
