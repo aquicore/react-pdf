@@ -4456,10 +4456,8 @@ var Image = /*#__PURE__*/function (_Base) {
         console.error('here');
         console.error(width);
         console.error(height);
-        console.error(Math.min(width / this.ratio, height));
         console.error(this.image);
         console.error(this.ratio);
-        console.error(Math.min(width / this.image.width, height / this.image.height));
         this.image.width = width;
         this.image.height = Math.min(width / this.ratio, height);
         console.error(this.image);
@@ -4604,24 +4602,9 @@ var Image = /*#__PURE__*/function (_Base) {
     this.root.instance.save(); // Clip path to keep image inside border radius
 
     this.clip();
-    var tempHeight = 0;
 
     if (this.image.data) {
-      console.error('what', this.image.width, this.image.height);
-      console.error(this.ratio);
-      console.error(Math.min(this.image.width * this.ratio, this.image.height));
-
-      if (this.ratio > 1) {
-        console.error('changing');
-        tempHeight = Math.min(this.image.width / this.ratio, this.image.height);
-      } else {
-        console.error('uh hello');
-        tempHeight = this.image.height;
-      }
-
-      console.error(tempHeight);
-
-      var _resolveObjectFit = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, tempHeight, objectPositionX, objectPositionY),
+      var _resolveObjectFit = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY),
           width = _resolveObjectFit.width,
           height = _resolveObjectFit.height,
           xOffset = _resolveObjectFit.xOffset,
@@ -4649,10 +4632,15 @@ var Image = /*#__PURE__*/function (_Base) {
           switch (_context3.prev = _context3.next) {
             case 0:
               setDestination(this);
+              console.log(this.image);
               this.root.instance.save();
+              console.log(this.image);
               this.applyTransformations();
+              console.log(this.image);
               this.drawBackgroundColor();
+              console.log(this.image);
               this.renderImage();
+              console.log(this.image);
               this.drawBorders();
 
               if (this.props.debug) {
@@ -4661,7 +4649,7 @@ var Image = /*#__PURE__*/function (_Base) {
 
               this.root.instance.restore();
 
-            case 8:
+            case 13:
             case "end":
               return _context3.stop();
           }

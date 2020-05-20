@@ -3837,10 +3837,8 @@ class Image extends Base {
         console.error('here');
         console.error(width);
         console.error(height);
-        console.error(Math.min(width / this.ratio, height));
         console.error(this.image);
         console.error(this.ratio);
-        console.error(Math.min(width / this.image.width, height / this.image.height));
         this.image.width = width;
         this.image.height = Math.min(width / this.ratio, height);
         console.error(this.image);
@@ -3928,28 +3926,14 @@ class Image extends Base {
     this.root.instance.save(); // Clip path to keep image inside border radius
 
     this.clip();
-    let tempHeight = 0;
 
     if (this.image.data) {
-      console.error('what', this.image.width, this.image.height);
-      console.error(this.ratio);
-      console.error(Math.min(this.image.width * this.ratio, this.image.height));
-
-      if (this.ratio > 1) {
-        console.error('changing');
-        tempHeight = Math.min(this.image.width / this.ratio, this.image.height);
-      } else {
-        console.error('uh hello');
-        tempHeight = this.image.height;
-      }
-
-      console.error(tempHeight);
       const {
         width,
         height,
         xOffset,
         yOffset
-      } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, tempHeight, objectPositionX, objectPositionY);
+      } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY);
       console.error('huh', width, height);
 
       if (width !== 0 && height !== 0) {
@@ -3967,10 +3951,15 @@ class Image extends Base {
 
   async render() {
     setDestination(this);
+    console.log(this.image);
     this.root.instance.save();
+    console.log(this.image);
     this.applyTransformations();
+    console.log(this.image);
     this.drawBackgroundColor();
+    console.log(this.image);
     this.renderImage();
+    console.log(this.image);
     this.drawBorders();
 
     if (this.props.debug) {
