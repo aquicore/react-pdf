@@ -3938,11 +3938,9 @@ class Image extends Base {
       console.error('what', this.image.width, this.image.height);
 
       if (this.ratio > 1) {
-        this.image.width = width;
-        this.image.height = Math.min(width / this.ratio, height);
+        this.image.height = Math.min(this.image.width / this.ratio, this.image.height);
       } else {
-        this.image.width = Math.min(height * this.ratio, width);
-        this.image.height = height;
+        this.image.width = Math.min(this.image.height * this.ratio, this.image.width);
       }
 
       console.log(this.image);
