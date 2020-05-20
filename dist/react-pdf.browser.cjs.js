@@ -4465,6 +4465,7 @@ var Image = /*#__PURE__*/function (_Base) {
         console.error(width);
         console.error(height);
         console.error(Math.min(width / this.ratio, height));
+        console.error(this.image);
         this.image.width = width;
         this.image.height = Math.min(width / this.ratio, height);
         console.error(this.image);
@@ -4536,11 +4537,12 @@ var Image = /*#__PURE__*/function (_Base) {
 
             case 15:
               this.image = _context.sent;
-              _context.next = 22;
+              console.error('resolving');
+              _context.next = 23;
               break;
 
-            case 18:
-              _context.prev = 18;
+            case 19:
+              _context.prev = 19;
               _context.t1 = _context["catch"](4);
               this.image = {
                 width: 0,
@@ -4548,12 +4550,12 @@ var Image = /*#__PURE__*/function (_Base) {
               };
               console.warn(_context.t1.message);
 
-            case 22:
+            case 23:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, this, [[4, 18]]);
+      }, _callee, this, [[4, 19]]);
     }));
 
     function fetch() {
