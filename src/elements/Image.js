@@ -168,7 +168,7 @@ class Image extends Base {
         objectPositionX,
         objectPositionY,
       );
-
+      console.error(width, height);
       if (width !== 0 && height !== 0) {
         this.root.instance
           .fillOpacity(opacity)

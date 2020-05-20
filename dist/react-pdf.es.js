@@ -3932,6 +3932,7 @@ class Image extends Base {
         xOffset,
         yOffset
       } = resolveObjectFit(this.style.objectFit, this.width - padding.left - padding.right, this.height - padding.top - padding.bottom, this.image.width, this.image.height, objectPositionX, objectPositionY);
+      console.error(width, height);
 
       if (width !== 0 && height !== 0) {
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {

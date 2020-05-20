@@ -4616,6 +4616,8 @@ var Image = /*#__PURE__*/function (_Base) {
           xOffset = _resolveObjectFit.xOffset,
           yOffset = _resolveObjectFit.yOffset;
 
+      console.error(width, height);
+
       if (width !== 0 && height !== 0) {
         this.root.instance.fillOpacity(opacity).image(this.image.data, left + padding.left + xOffset, top + padding.top + yOffset, {
           width: width,
