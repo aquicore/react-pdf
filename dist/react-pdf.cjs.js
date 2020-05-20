@@ -3948,15 +3948,10 @@ class Image extends Base {
 
   async render() {
     setDestination(this);
-    console.log(this.image);
     this.root.instance.save();
-    console.log(this.image);
     this.applyTransformations();
-    console.log(this.image);
     this.drawBackgroundColor();
-    console.log(this.image);
     this.renderImage();
-    console.log(this.image);
     this.drawBorders();
 
     if (this.props.debug) {

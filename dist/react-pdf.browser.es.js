@@ -4621,15 +4621,10 @@ var Image = /*#__PURE__*/function (_Base) {
           switch (_context3.prev = _context3.next) {
             case 0:
               setDestination(this);
-              console.log(this.image);
               this.root.instance.save();
-              console.log(this.image);
               this.applyTransformations();
-              console.log(this.image);
               this.drawBackgroundColor();
-              console.log(this.image);
               this.renderImage();
-              console.log(this.image);
               this.drawBorders();
 
               if (this.props.debug) {
@@ -4638,7 +4633,7 @@ var Image = /*#__PURE__*/function (_Base) {
 
               this.root.instance.restore();
 
-            case 13:
+            case 8:
             case "end":
               return _context3.stop();
           }
