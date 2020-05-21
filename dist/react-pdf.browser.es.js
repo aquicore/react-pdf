@@ -4458,7 +4458,9 @@ var Image = /*#__PURE__*/function (_Base) {
           height: Math.min(width / this.ratio, height)
         };
       } else {
-        this.image.width = Math.min(height * this.ratio, width);
+        var _ratioed = Math.min(height * this.ratio, width);
+
+        this.image.width = _ratioed;
         this.image.height = height;
         return {
           width: Math.min(height * this.ratio, width),

@@ -3839,7 +3839,8 @@ class Image extends Base {
           height: Math.min(width / this.ratio, height)
         };
       } else {
-        this.image.width = Math.min(height * this.ratio, width);
+        const ratioed = Math.min(height * this.ratio, width);
+        this.image.width = ratioed;
         this.image.height = height;
         return {
           width: Math.min(height * this.ratio, width),
